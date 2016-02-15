@@ -77,7 +77,7 @@ extension Cat: SQLModel {
             "identifier": String.self,
             "name": String.self,
             "age": Int.self,
-            "barks": Bool.self]
+            "claws": Double.self]
     }
 }
 
