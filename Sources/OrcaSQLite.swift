@@ -34,7 +34,7 @@ public class OrcaSQLite {
                 if value.hasPrefix(typeString) {
 
                     if let range = value.rangeOfString(typeString) {
-                        
+
                         let v = value.stringByReplacingCharactersInRange(range,
                              withString: "")
 
@@ -125,20 +125,18 @@ extension OrcaSQLite: Driver {
     func createTableForCollection(collection: String,
         model: Model) {
 
-            if let sqlModel = model as? SQLModel {
+        let sql = SQL(operation: .CREATE, table: collection)
 
-                let sql = SQL(operation: .CREATE, table: collection)
+        var params = [String: String]()
 
-                var params = [String: String]()
+        for (key, _) in model.dynamicType.fullSchema() {
+            params[key] = "TEXT"
+        }
 
-                for (key, _) in sqlModel.typesWithIdentifier() {
-                    params[key] = "TEXT"
-                }
+        sql.data = params
 
-                sql.data = params
+        database.execute(sql.query)
 
-                database.execute(sql.query)
-            }
     }
 
 }
