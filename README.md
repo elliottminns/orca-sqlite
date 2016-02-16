@@ -13,8 +13,8 @@ Package.swift
 ```swift
 
     dependencies: [
-        .Package(url: "https://github.com/elliottminns/orca", majorVersion: 0),
-        .Package(url: "https://github.com/elliottminns/orca-sqlite", majorVersion: 0)
+        .Package(url: "https://github.com/elliottminns/orca.git", majorVersion: 0),
+        .Package(url: "https://github.com/elliottminns/orca-sqlite.git", majorVersion: 0)
     ]
 
 ```
