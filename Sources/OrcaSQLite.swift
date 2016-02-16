@@ -55,8 +55,8 @@ extension OrcaSQLite: Driver {
         return NSUUID().UUIDString
     }
 
-    public func findOne(collection collection: String,
-        filters: [Filter]) throws -> [String: DataType] {
+    public func findOne(collection collection: String, filters: [Filter],
+        schema: [String: DataType.Type]) throws -> [String: DataType] {
 
             let sql = SQL(operation: .SELECT, table: collection)
 
@@ -72,8 +72,8 @@ extension OrcaSQLite: Driver {
             throw DriverError.NotFound
     }
 
-    public func find(collection collection: String,
-        filters: [Filter]) throws -> [[String: DataType]] {
+    public func find(collection collection: String, filters: [Filter], 
+        schema: [String: DataType.Type]) throws -> [[String: DataType]] {
 
             let sql = SQL(operation: .SELECT, table: collection)
 
@@ -89,7 +89,7 @@ extension OrcaSQLite: Driver {
     }
 
     public func update(collection collection: String, filters: [Filter],
-        data: [String: DataType]) throws {
+        data: [String: DataType], schema: [String: DataType.Type]) throws {
 
             let sql = SQL(operation: .UPDATE, table: collection)
 
@@ -112,8 +112,8 @@ extension OrcaSQLite: Driver {
             database.execute(sql.query)
     }
 
-    public func delete(collection collection: String,
-        filters: [Filter]) throws {
+    public func delete(collection collection: String, filters: [Filter], 
+        schema: [String: DataType.Type]) throws {
 
             let sql = SQL(operation: .DELETE, table: collection)
 
